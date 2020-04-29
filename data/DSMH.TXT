@@ -1,0 +1,43 @@
+BAS1201	3	3	Dai so
+BAS1203	3	3	Giai tich 1
+BAS1105	7	0	Giao duc quoc phong va an ninh
+BAS1106	2	2	Giao duc the chat 1
+BAS1111	2	2	Nhung nguyen ly co ban cua chu nghia Mac-Lenin 1
+INT1154	2	2	Tin hoc co so 1
+INT1155	2	2	Tin hoc co so 2
+BAS1141	3	3	Tieng anh A1.1
+BAS1143	3	3	Tieng anh A2.1
+BAS1112	3	3	Nhung nguyen ly co ban cua chu nghia Mac-Lenin 2
+BAS1107	2	2	Giao duc the chat 2
+BAS1226	2	2	Xac suat thong ke
+BAS1224	4	4	Vat ly 1 va thi nghiem
+BAS1204	3	3	Giai tich 2
+BAS1227	4	4	Vat ly 3 va thi nghiem
+BAS1142	4	4	Tieng anh A1.2
+BAS1144	4	4	Tieng anh A2.2
+BAS1122	2	2	Tu tuong Ho Chi Minh
+ELE1433	2	2	Ky thuat so
+INT1339	3	3	Ngon ngu lap trinh C++
+INT1358	3	3	Toan roi rac 1
+INT1359	3	3	Toan roi rac 2
+INT1323	2	2	Kien truc may tinh
+INT1306	3	3	Cau truc du lieu va giai thuat
+ELE1330	2	2	Xu ly tin hieu so
+ELE1319	3	3	Ly thuyet thong tin
+BAS1145	3	3	Tieng anh B1.1
+BAS1102	3	3	Duong loi cach mang Dang cong san VN
+BAS1146	4	4	Tieng Anh B1.2
+INT1313	3	3	Co so du lieu
+INT1319	3	3	He dieu hanh
+INT1330	3	3	Ky thuat vi xu ly
+INT1332	3	3	Lap trinh huong doi tuong
+SKD1101	1	1	Ky nang thuyet trinh
+SKD1102	1	1	Ky nang lam viec nhom
+SKD1108	2	2	Phuong phap luan nghien cuu khoa hoc
+SKD1103	1	1	Ky nang tao lap Van ban
+INT1362	2	2	Xu ly anh
+INT1340	3	3	Nhap mon cong nghe phan mem
+INT1341	3	3	Nhap mon tri tue nhan tao
+INT1336	3	3	Mang may tinh
+INT1328	2	2	Ky thuat do hoa
+INT1303	3	3	An toan va bao mat he thong thong tin
