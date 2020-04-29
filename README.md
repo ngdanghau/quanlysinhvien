@@ -6,8 +6,8 @@ Quản lý điểm sinh viên theo hệ tín chỉ:  Ta tổ chức các danh s�
 - Danh sách Lop Tín chỉ: danh sách tuyến tính là 1 mảng con trỏ có tối đa 10000 lớp (MALOPTC (số nguyên tự động tăng),  MAMH, Niên khóa, Học kỳ, Nhóm, số sv min, số sv max, hủy lớp (boolean), con trỏ dssv): con trỏ dssv sẻ trỏ đến danh sách sinh viên  đăng ký lớp tín chỉ.
 - Danh sách sinh viên : danh sách liên kết đơn (MASV (C15), HO, TEN,  PHAI, SODT, MALOP (C15))
 - Danh sách Đăng ký (danh sách liên kết đơn): ( MASV ,  DIEM)
-Chương trình có các chức năng sau : 
 
+Chương trình có các chức năng sau : 
 a. Mở lớp tín chỉ : cho phép cập nhật (thêm / xóa / hiệu chỉnh ) thông tin của lớp tín chỉ
 
 b. In danh sách sinh viên đã đăng ký lớp tín chỉ  theo các tham số : niên khóa, học kỳ, nhóm , mã môn học  
@@ -30,9 +30,9 @@ h. Hủy lớp tín chỉ : tự động hủy các lớp tín chỉ có số sv
 i. Nhập điểm: User nhập vào niên khóa, học kỳ, nhóm , môn học. Căn cứ vào các giá trị này, chương trình sẽ tự động lọc ra danh sách sv đã đăng ký , và in ra màn hình danh sách theo dạng sau : 
 STT	MASV	HO	TEN	DIEM
 99	XXXX	XXXXXXXXXXX	XXXXX	
-99	XXXX	XXXXXXXXXXX	XXXXX	
-				
+99	XXXX	XXXXXXXXXXX	XXXXX		
 Bốn cột đầu đã có sẵn dữ liệu, lúc này user chỉ việc nhập điểm hoặc hiệu chỉnh điểm trực tiếp vào khung trên cột điểm.
+
 j. In bảng điểm môn học của 1 lớp tín chỉ: User nhập vào niên khóa, học kỳ, nhóm , môn học, chương trình sẽ in ra bảng điểm đã thi . Kết  quả trên màn hình:
 
 BẢNG ĐIỂM MÔN HỌC <tenmon>
