@@ -255,20 +255,23 @@ void ShowSubMenu(int &select){
 	    	case -1:
 		    	return;
 		    case 0:
-		    	if(select == 2)
+		    	if(select == 1)
+		    		DrawChonLopHoc("NEW");
+		    	else if(select == 2)
 		    		PrintDataMonHoc(2, "NEW");
 		        break;
 		    case 1:
-		    	if(select == 2)
+		    	if(select == 1)
+		    		DrawChonLopHoc("EDIT");
+		    	else if(select == 2)
 		    		PrintDataMonHoc(2, "EDIT");
 		        break;
 		    case 2:
+		    	if(select == 1)
+		    		DrawChonLopHoc("DSSV");
 		        break;
 		    case 3:
-		    	if(select == 1){
-		    		PrintDataLopHoc();
-				}	
-		    	else if(select == 2)
+		    	if(select == 2)
 		    		PrintDataMonHoc(1, "DATA_TABLE");
 		        break;
 	    }

@@ -16,6 +16,7 @@ struct LopTinChi{
 	int MAXSV; //So Sinh Vien Toi Da
 	bool HUYLOP; //(true= Giu lop; false= xoa lop)
 	LISTDK DSDK;
+	LopTinChi() { static int id = 0; MALOPTC = id++; }
 };
 
 struct DSLOPTINCHI{

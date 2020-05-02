@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o struct/monhoc.o struct/loptinchi.o struct/danhsachdangky.o console.o helpers.o struct/structs.o struct/lop.o struct/sinhvien.o
-LINKOBJ  = main.o struct/monhoc.o struct/loptinchi.o struct/danhsachdangky.o console.o helpers.o struct/structs.o struct/lop.o struct/sinhvien.o
+OBJ      = main.o struct/loptinchi.o struct/danhsachdangky.o console.o helpers.o struct/structs.o
+LINKOBJ  = main.o struct/loptinchi.o struct/danhsachdangky.o console.o helpers.o struct/structs.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -std=c++11
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -27,9 +27,6 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
-struct/monhoc.o: struct/monhoc.cpp
-	$(CPP) -c struct/monhoc.cpp -o struct/monhoc.o $(CXXFLAGS)
-
 struct/loptinchi.o: struct/loptinchi.cpp
 	$(CPP) -c struct/loptinchi.cpp -o struct/loptinchi.o $(CXXFLAGS)
 
@@ -44,9 +41,3 @@ helpers.o: helpers.cpp
 
 struct/structs.o: struct/structs.cpp
 	$(CPP) -c struct/structs.cpp -o struct/structs.o $(CXXFLAGS)
-
-struct/lop.o: struct/lop.cpp
-	$(CPP) -c struct/lop.cpp -o struct/lop.o $(CXXFLAGS)
-
-struct/sinhvien.o: struct/sinhvien.cpp
-	$(CPP) -c struct/sinhvien.cpp -o struct/sinhvien.o $(CXXFLAGS)

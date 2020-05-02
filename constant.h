@@ -38,11 +38,12 @@
 #define GREEN 242
 #define DARK_BLUE 243
 #define RED 244
-#define PURPLE 245
+#define PURPLE 5
 #define YELLOW 246
 #define WHITE 15
 #define LIGHT_BLUE 11
 #define BLUE 9
+#define LIGHT_PURPLE 13
 
 #define NUMBER_LINE_ITEM 10
 #define NUMBER_MENU_ITEM 5

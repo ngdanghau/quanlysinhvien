@@ -32,10 +32,10 @@ char SubMenuText[NUMBER_MENU_ITEM-1][4][MENU_TEXT_LENGTH] = {
 		"In DS Lop TC"
 	},
 	{
-		"Mo Lop Moi",
 		"Them Sinh Vien",
-		"Tim Sinh Vien",
-		"In DS Cac Lop ",
+		"Sua/Xoa Sinh Vien",
+		"In DS Sinh Vien",
+		"Xem Diem Sinh Vien",
 	},
 	{
 		"Them Mon Hoc",
