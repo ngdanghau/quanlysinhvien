@@ -1,5 +1,5 @@
 #include "helpers.h"
-#include "constant.h"
+#include "../constant.h"
 std::string convertToString(char* a, int size) 
 { 
     int i; 
@@ -10,6 +10,24 @@ std::string convertToString(char* a, int size)
     return s; 
 } 
 
+std::string ConvertIntToString(int a){
+	std::string s = "", temp = ""; 
+    int n = 0, du;
+
+	while (a != 0)
+	{
+		du = a % 10;
+		temp.push_back((char)( du + '0'));
+		a = a / 10;
+		
+	}
+
+	int length = temp.length();
+    for (int i = length-1; i > -1; i--) {
+        s.push_back(temp[i]);
+    }
+    return s; 
+}
 
 /* Function cho thong bao */
 void ClearMessage(std::string s){
@@ -147,6 +165,24 @@ int InputValue(int maxlength, string pattern, string &keyword, int &x, int &y, i
 				return 201;
 			}else return c;
 		}
+	}else if(type == 6){
+		while(1){
+			len = keyword.length();
+			c = getch();
+			if( c == 224 || c == 0){
+				c = 256 + getch();
+				return c;
+			}else if (  (c > 48 && c < 51 ) ){
+				if(len < maxlength){
+					keyword.push_back(char(c));
+					PrintKeyWord(pattern, keyword, x, y);
+				}
+			}else if(c == BACKSPACE){
+				--len;
+				keyword = keyword.substr(0, len--);
+				PrintKeyWord(pattern, keyword, x, y);
+			}else return c;
+		}
 	}
 }
 
@@ -182,7 +218,7 @@ void DrawTitleTable(int pointX, int pointY, int select, char ListText[10][MENU_T
 }
 
 
-void DrawTitleYesNoMH(int pointY, int select, string state){
+void DrawTitleYesNo(int pointY, int select, string state){
 	HideTyping();
 	GoToXY(76, pointY);
 	
@@ -196,6 +232,8 @@ void DrawTitleYesNoMH(int pointY, int select, string state){
 		cout << " LUU THAY DOI ";
 	else if(state == "DELETE")
 		cout << " XAC NHAN XOA ";
+	else if(state == "HUYLOPTC")
+		cout << "    DONG Y    ";
 	GoToXY(110, pointY);
 	
 	
@@ -210,12 +248,14 @@ void DrawTitleYesNoMH(int pointY, int select, string state){
 		cout << " HUY THAY DOI ";
 	else if(state == "DELETE")
 		cout << "    HUY XOA   ";
+	else if(state == "HUYLOPTC")
+		cout << "    TU CHOI   ";
 	
 	SetBGColor(WHITE);
 	SetColor(BLACK);
 }
 
-void DrawButtonYesNoMH(int pointY, string state){
+void DrawButtonYesNo(int pointY, string state){
 	int pointX = 75;
 	int width = 15;
 	for(int i = 0; i < 2; i++){
@@ -240,10 +280,10 @@ void DrawButtonYesNoMH(int pointY, string state){
 	        
 	    cout << char(BOTTOM_RIGHT_CORNER_SIMPLE);
 	}
-	DrawTitleYesNoMH(pointY+1, -1, state);
+	DrawTitleYesNo(pointY+1, -1, state);
 }
 
-void ClearButtonYesNoMH(int pointY){
+void ClearButtonYesNo(int pointY){
 	int pointX = 75;
 	for(int i = 0; i < 3; i++){
 		GoToXY(pointX, pointY+i);
@@ -279,6 +319,20 @@ void ClearInput(int x, int y, int n){
 	for(int i = 0; i < n; i++){
 		GoToXY(x, y+=4);
 		printf("%-50s"," ");
+	}
+}
+
+void ClearTable(int is_clear_title){
+	HideTyping();
+	int height = 38;
+	int pointY = 4;
+	if(is_clear_title){
+		height = 41;
+		pointY = 1;
+	}
+	for (int i = 0; i < height; i++){
+		GoToXY(33, i+pointY);
+		printf("%-120s"," ");
 	}
 }
 
@@ -334,4 +388,19 @@ void PrintPageTable(int currentPage, int totalPage){
 	SetColor(BLACK);
 }
 
+
+int GetHocKyByTime(){
+	time_t baygio = time(0);
+	tm *ltm = localtime(&baygio);
+	int month = 1 + ltm->tm_mon;
+	if( 0 < month < 7){
+		return 1;
+	}else return 2;
+}
+
+int GetYear(){
+	time_t baygio = time(0);
+	tm *ltm = localtime(&baygio);
+	return 1900 + ltm->tm_year;
+}
 

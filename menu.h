@@ -97,6 +97,7 @@ void DrawBorder(){
 }
 
 void ShowHuongDan(){
+	SetColor(BLACK);
 	for (int i = 0; i < NUMBER_LINE_ITEM; i++){
 		GoToXY(3, HEIGHT_FRAME_MENU+3+i);
 		cout << MenuPhimTat[i];
@@ -255,23 +256,33 @@ void ShowSubMenu(int &select){
 	    	case -1:
 		    	return;
 		    case 0:
-		    	if(select == 1)
+		    	if(select == 0)
+		    		PrintDataLopTC(2, "NEW");
+		    	else if(select == 1)
 		    		DrawChonLopHoc("NEW");
 		    	else if(select == 2)
 		    		PrintDataMonHoc(2, "NEW");
 		        break;
 		    case 1:
-		    	if(select == 1)
+		    	if(select == 0)
+		    		PrintDataLopTC(2, "EDIT");
+		    	else if(select == 1)
 		    		DrawChonLopHoc("EDIT");
 		    	else if(select == 2)
 		    		PrintDataMonHoc(2, "EDIT");
 		        break;
 		    case 2:
-		    	if(select == 1)
+		    	if(select == 0)
+		    		HuyLopTinChi();
+		    	else if(select == 1)
 		    		DrawChonLopHoc("DSSV");
 		        break;
 		    case 3:
-		    	if(select == 2)
+		    	if(select == 0)
+		    		PrintDataLopTC(1, "DATA_TABLE");
+		    	else if(select == 1)
+					DrawChonLopTinChi();	
+		    	else if(select == 2)
 		    		PrintDataMonHoc(1, "DATA_TABLE");
 		        break;
 	    }
@@ -306,6 +317,7 @@ int ShowMenu(){
 		    	if(select < NUMBER_MENU_ITEM-1)
 		    		ShowSubMenu(select);	
 				else {
+					ClearListAll();
 					system("cls");
 					exit(0);
 				}	

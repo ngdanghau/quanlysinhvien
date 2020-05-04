@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o struct/loptinchi.o struct/danhsachdangky.o console.o helpers.o struct/structs.o
-LINKOBJ  = main.o struct/loptinchi.o struct/danhsachdangky.o console.o helpers.o struct/structs.o
+OBJ      = main.o mylib/console.o mylib/helpers.o struct/structs.o
+LINKOBJ  = main.o mylib/console.o mylib/helpers.o struct/structs.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -std=c++11
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -27,17 +27,11 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
-struct/loptinchi.o: struct/loptinchi.cpp
-	$(CPP) -c struct/loptinchi.cpp -o struct/loptinchi.o $(CXXFLAGS)
+mylib/console.o: mylib/console.cpp
+	$(CPP) -c mylib/console.cpp -o mylib/console.o $(CXXFLAGS)
 
-struct/danhsachdangky.o: struct/danhsachdangky.cpp
-	$(CPP) -c struct/danhsachdangky.cpp -o struct/danhsachdangky.o $(CXXFLAGS)
-
-console.o: console.cpp
-	$(CPP) -c console.cpp -o console.o $(CXXFLAGS)
-
-helpers.o: helpers.cpp
-	$(CPP) -c helpers.cpp -o helpers.o $(CXXFLAGS)
+mylib/helpers.o: mylib/helpers.cpp
+	$(CPP) -c mylib/helpers.cpp -o mylib/helpers.o $(CXXFLAGS)
 
 struct/structs.o: struct/structs.cpp
 	$(CPP) -c struct/structs.cpp -o struct/structs.o $(CXXFLAGS)

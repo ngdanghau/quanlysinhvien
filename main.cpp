@@ -1,6 +1,6 @@
 #include <iostream>
-#include "console.h"
-#include "helpers.h"
+#include "mylib/console.h"
+#include "mylib/helpers.h"
 #include "struct/structs.h"
 #include "menu.h"
 

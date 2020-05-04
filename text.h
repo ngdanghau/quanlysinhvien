@@ -12,7 +12,9 @@ char MenuPhimTat[NUMBER_LINE_ITEM][50]= {
 	"DOWN: Xuong",
 	"LEFT: Trai",
 	"RIGHT: Phai",
-	"Enter: Chon",
+	"PgUp: Keo Len",
+	"PgDn: Keo Xuong",
+	"Enter: Chon/ Xac Nhan",
 	"ESC: Thoat"
 };
 
@@ -28,14 +30,14 @@ char SubMenuText[NUMBER_MENU_ITEM-1][4][MENU_TEXT_LENGTH] = {
 	{
 		"Mo Lop TC",
 		"Sua/Huy Lop Tin Chi",
-		"Tim Lop TC",
+		"Huy Lop TC",
 		"In DS Lop TC"
 	},
 	{
 		"Them Sinh Vien",
 		"Sua/Xoa Sinh Vien",
-		"In DS Sinh Vien",
-		"Xem Diem Sinh Vien",
+		"In DSSV Theo Lop",
+		"In DSSV Theo LopTC",
 	},
 	{
 		"Them Mon Hoc",

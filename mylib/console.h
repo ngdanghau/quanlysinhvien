@@ -18,3 +18,4 @@ void SetBGColor(WORD color);
 
 #endif
 
+

@@ -3,6 +3,133 @@
 #include <fstream>
 #include <math.h>
 #include <conio.h>
+
+#define MAXLOPTINCHI 10000
+/*
+* — Cau truc Danh Sach Sinh Vien —
+*/
+struct SinhVien{
+	char MASV[15]; //Ma SInh Vien
+	char HO[30]; //Ho Va Ten Lot
+	char TEN[10]; //Ten
+	int PHAI;
+	char SODT[15]; // So Dien Thoai
+	char MALOP[15];
+};
+
+struct NodeSV
+{
+	SinhVien SV;
+    NodeSV *next;
+};
+
+typedef NodeSV* LISTSV;
+
+/*
+* — Ham xu ly Cau truc sinh vien . Danh sach lien ket don —
+*/
+void Initialize_SV(LISTSV &First);
+int Reccount_SV(LISTSV &First, char *malophoc);
+int Reccount_SV_With_Keyword(LISTSV &First, char *malophoc, std::string keyword);
+LISTSV Check_Is_New_Class(LISTSV First, char *malophoc);
+LISTSV Search_Info_SV(LISTSV First, SinhVien x);
+int Delete_Info_SV(LISTSV &First, SinhVien x);
+void ClearListSV(LISTSV &First);
+void Traverse_SV(LISTSV First, char *malophoc, int &stt, int &pointX, int pointY, int currentPage, std::string &keyword, LISTSV *pages);
+void Selection_Sort_SV(LISTSV &First, char *malophoc);
+void Insert_Last_SV(LISTSV &First, SinhVien x);
+
+void ClearRemainSinhVien(int total, int pointX, int pointY);
+void CountHeaderSinhVienTable(int pointX, int pointY);
+void CoutNodeSV(SinhVien p, int stt, int pointX, int pointY);
+void DrawBoderThemSinhVien(std::string title, char *malophoc);
+int ThemSinhVien(LISTSV &First, std::string state, char *malophoc, int is_new_class);
+void DrawTableSinhVien(char *malophoc, int is_draw_title);
+void PrintDataSinhVien(LISTSV &First, int tab, std::string state, char *malophoc, int is_new_class);
+void CreateSinhVien(LISTSV &First, char *malophoc, int is_new_class, std::string state);
+void DrawInputGenger(int pointX, int pointY, int gender);
+
+/*
+* === END ===
+*/
+
+
+/*
+* — Cau truc Danh Sach Dang Ky —
+*/
+
+struct DANGKY{
+	char MASV[15];
+	float DIEM;
+	
+};
+struct NodeDK{
+	DANGKY SV;
+	NodeDK *next;
+};
+typedef NodeDK* LISTDK;
+
+/*
+* === END ===
+*/
+int Reccount_DK(LISTDK &First);
+int Reccount_DK_WITH_ADD_SV(LISTDK &First, LISTSV &DSSV);
+void Initialize_DK(LISTDK& First);
+void ClearListDK(LISTDK& First);
+void Insert_Last_DK(LISTDK &First, DANGKY x);
+void Create_DangKy(LISTDK &First, char *filename);
+
+/*
+* — Cau truc Danh Sach Lop Tin Chi —
+*/
+
+struct LopTinChi{
+	unsigned int MALOPTC; // Ma lop Tin Chi
+	char MAMH[10]; //Ma Mon Hoc
+	int NIENKHOA; //Nien Khoa
+	int HOCKY; //Hoc Ky (1 hoac 2 hoac 3)
+	int NHOM; //Nhom
+	int MINSV; //So Sinh Vien Toi Thieu
+	int MAXSV; //So Sinh Vien Toi Da
+	bool HUYLOP; //(true= Giu lop; false= xoa lop)
+	LISTDK DSDK;
+	LopTinChi() { static int id = 1; MALOPTC = id++; }
+};
+
+struct DSLOPTINCHI{
+	unsigned int N;
+	LopTinChi *LOP[MAXLOPTINCHI];
+};
+
+/*
+* === END ===
+*/
+void ClearRemainLopTinChi(int total, int pointX, int pointY);
+void CountHeaderLopTinChiTable(int pointX, int pointY);
+void CoutNodeLopTinChi(LopTinChi *ltc, int stt, int pointX, int pointY);
+void DrawBoderThemLopTinChi(std::string title, int index);
+int ThemLopTinChi(DSLOPTINCHI &plist, std::string state);
+void DrawTableLopTinChi(int is_draw_title, int number, int tab);
+
+void Huy_LopTinChi(DSLOPTINCHI &plist);
+void Traverse_LTC(DSLOPTINCHI plist, int &pointX, int pointY, int currentPage, int &stt, std::string keyword, int &total);
+void Delete_Item_LopTC(DSLOPTINCHI &plist, int i);
+int Search_Info_LTC(DSLOPTINCHI plist, int maloptc);
+int Search_Info_LTC_BY_MALOPHOC(DSLOPTINCHI plist, char *mamonhoc, int nhom, int hocky, int nienkhoa);
+void ClearList_LopTC(DSLOPTINCHI &plist);
+void PrintDataLopTC(int tab, std::string state);
+void Load_LopTC();
+void ClearBoderHuyLopTinChi();
+void DrawBoderHuyLopTinChi();
+void HuyLopTinChi();
+int DrawTableLopTCEx();
+int DrawTableMonHocEx();
+void DrawTableSinhVienEx(LISTDK &First);
+void DrawTitleFunction(int x, int y, int start, int step);
+void DrawBoderChonLTC();
+void DrawChonLopTinChi();
+
+
 /*
 * — Cau truc Danh Sach Mon Hoc —
 */
@@ -27,7 +154,6 @@ typedef NodeMH* TREE;
 void ClearRemainMonHoc(int total, int pointX, int pointY, int currentPage);
 void CountHeaderMonHocTable(int pointX, int pointY);
 void CoutNodeMH(MonHoc p, int stt, int pointX, int pointY);
-void ClearTableMonHoc(int is_clear_title);
 
 void InitializeTree(TREE &root);
 int ReccountTree(TREE root);
@@ -44,7 +170,7 @@ void Selection_Sort_DSMH(TREE& DSMH);
 TREE SearchNodeMH(TREE root, char *mamh);
 void Load_MonHoc();
 
-void DrawTableMonHoc();
+void DrawTableMonHoc(int is_draw_title);
 void PrintDataMonHoc(int tab, std::string state);
 void DrawBoderThemMonHoc(std::string title);
 int ThemMonHoc(TREE &DSMH, std::string state);
@@ -72,6 +198,7 @@ void Initialize_LH(DSLOPPTR &ListLop);
 int DeleteInfo_LH(DSLOPPTR &ListLop, char *malh);
 void ClearList_LH(DSLOPPTR &ListLop);
 int Reccount_LH(DSLOPPTR &ListLop);
+void Selection_Sort_LH(DSLOPPTR& ListLop);
 void Traverse_LH(DSLOPPTR ListLop, int &stt, std::string keyword, int x, int y, std::string state);
 DSLOPPTR Search_LH(DSLOPPTR ListLop, char *malh);
 DSLOPPTR Search_LH_By_STT(DSLOPPTR ListLop, std::string keyword, int select);
@@ -92,53 +219,8 @@ void DrawBorderSearch(int &pointX, int &pointY);
 
 
 
-/*
-* — Cau truc Danh Sach Sinh Vien —
-*/
-struct SinhVien{
-	char MASV[15]; //Ma SInh Vien
-	char HO[30]; //Ho Va Ten Lot
-	char TEN[10]; //Ten
-	int PHAI;
-	char SODT[15]; // So Dien Thoai
-	char MALOP[15];
-};
 
-struct NodeSV
-{
-	SinhVien SV;
-    NodeSV *next;
-};
 
-typedef NodeSV* LISTSV;
-
-/*
-* — Ham xu ly Cau truc sinh vien . Danh sach lien ket don —
-*/
-void Initialize_SV(LISTSV& First);
-int Reccount_SV(LISTSV &First, char *malophoc);
-int Reccount_SV_With_Keyword(LISTSV &First, char *malophoc, std::string keyword);
-LISTSV Check_Is_New_Class(LISTSV First, char *malophoc);
-LISTSV Search_Info_SV(LISTSV First, SinhVien x);
-int Delete_Info_SV(LISTSV& First, SinhVien x);
-void ClearListSV(LISTSV& First);
-void Traverse_SV(LISTSV First, char *malophoc, int &stt, int &pointX, int pointY, int currentPage, std::string &keyword, LISTSV *pages);
-void Selection_Sort_SV(LISTSV& First, char *malophoc);
-void Insert_Last_SV(LISTSV &First, SinhVien x);
-
-void ClearRemainSinhVien(int total, int pointX, int pointY, int currentPage);
-void CountHeaderSinhVienTable(int pointX, int pointY);
-void CoutNodeSV(SinhVien p, int stt, int pointX, int pointY);
-void ClearTableSinhVien(int is_clear_title);
-void DrawBoderThemSinhVien(std::string title, char *malophoc);
-int ThemSinhVien(LISTSV &First, std::string state, char *malophoc, int is_new_class);
-void DrawTableSinhVien(char *malophoc);
-void PrintDataSinhVien(LISTSV &First, int tab, std::string state, char *malophoc, int is_new_class);
-void CreateSinhVien(LISTSV &First, char *malophoc, int is_new_class, std::string state);
-void DrawInputGenger(int pointX, int pointY, int gender);
-
-/*
-* === END ===
-*/
 
 void LoadAllDataFromFile();
+void ClearListAll();

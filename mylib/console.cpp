@@ -93,3 +93,4 @@ void SetBGColor(WORD color)
     SetConsoleTextAttribute(hConsoleOutput, wAttributes);
 }
 
+
