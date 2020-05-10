@@ -256,34 +256,78 @@ void ShowSubMenu(int &select){
 	    	case -1:
 		    	return;
 		    case 0:
-		    	if(select == 0)
+		    	if(select == 0){
 		    		PrintDataLopTC(2, "NEW");
-		    	else if(select == 1)
-		    		DrawChonLopHoc("NEW");
-		    	else if(select == 2)
+		    		SaveFileLopTC();
+				}
+		    	else if(select == 1){
+		    		PrintDataLopHoc("NEW");
+		    		SaveFileSinhVien();
+				}
+		    	else if(select == 2){
 		    		PrintDataMonHoc(2, "NEW");
+		    		SaveFileMonHoc();
+				}
 		        break;
 		    case 1:
-		    	if(select == 0)
-		    		PrintDataLopTC(2, "EDIT");
-		    	else if(select == 1)
-		    		DrawChonLopHoc("EDIT");
-		    	else if(select == 2)
-		    		PrintDataMonHoc(2, "EDIT");
+		    	if(select == 0){
+		    		PrintDataLopTC(1, "DATA_TABLE");
+		    		SaveFileLopTC();
+				}	
+		    	else if(select == 1){
+		    		PrintDataLopHoc("DATA_TABLE");
+		    		SaveFileSinhVien();
+				}
+		    	else if(select == 2){
+		    		PrintDataMonHoc(1, "DATA_TABLE");
+		    		SaveFileMonHoc();
+				}else if(select == 3){
+					
+					/*
+					PrintReportMarkLopTC();
+					system("cls");
+					GoToXY(0,0);
+					HorizontalScrollBar(1000, 1000);
+					for(int i = 0; i < 100; i++){
+						for(int j = 0; j < 1000; j++){
+							cout << "a";
+						}	
+					}
+					
+					system("cls");
+					RemoveScrollbar();
+					GoToXY(0, 0);
+					DrawBorder();
+					ShowHuongDan();
+					DrawMenu(select);
+					*/
+				}
+		    		
 		        break;
 		    case 2:
-		    	if(select == 0)
+		    	if(select == 0){
 		    		HuyLopTinChi();
-		    	else if(select == 1)
-		    		DrawChonLopHoc("DSSV");
+					SaveFileLopTC();
+				}	
+		    	else if(select == 1){
+		    		PrintDataLopHoc("DATA_TABLE");
+		    		SaveFileSinhVien();
+				}
+		    	else if(select == 2){
+		    		DrawNhapMaSinhVien();
+				}
 		        break;
 		    case 3:
-		    	if(select == 0)
+		    	if(select == 0){
 		    		PrintDataLopTC(1, "DATA_TABLE");
+		    		SaveFileLopTC();
+				}	
 		    	else if(select == 1)
-					DrawChonLopTinChi();	
-		    	else if(select == 2)
+					DrawTableLopTCEx();	
+		    	else if(select == 2){
 		    		PrintDataMonHoc(1, "DATA_TABLE");
+		    		SaveFileMonHoc();
+				}
 		        break;
 	    }
 	} while (1);

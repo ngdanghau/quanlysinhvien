@@ -42,7 +42,7 @@ char SubMenuText[NUMBER_MENU_ITEM-1][4][MENU_TEXT_LENGTH] = {
 	{
 		"Them Mon Hoc",
 		"Sua/Xoa Mon Hoc",
-		"DK Mon Hoc",
+		"DK Mon Hoc/LopTC",
 		"In DS Mon Hoc"
 	},
 	{

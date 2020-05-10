@@ -7,6 +7,7 @@ using namespace std;
 
 void ResizeConsole(int width, int height);
 void RemoveScrollbar();
+void HorizontalScrollBar(int X, int Y);
 void SetTitleAndBgColor(string title, string color);
 void GoToXY(int x, int y);
 int GetX();

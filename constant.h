@@ -74,6 +74,9 @@
 #define EX_RIGHT 256 + 77
 #define PAGEUP 73
 #define PAGEDOWN 81
+#define EX_PAGEUP 256 + 73
+#define EX_PAGEDOWN 256 + 81
+
 #define BACKSPACE 8
 #define HOME 71
 #define DEL 83
@@ -81,7 +84,7 @@
 #define ENTER 13
 #define CTRL_S 19
 #define CTRL_O 15
-
+#define CTRL_F 6
 
 
 #endif

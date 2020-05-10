@@ -19,6 +19,16 @@ void RemoveScrollbar(){
     SetConsoleScreenBufferSize(handle, new_size);
 }
 
+void HorizontalScrollBar(int X, int Y){
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coordinates = 
+    {
+        coordinates.X = X,
+        coordinates.Y = Y
+    };
+    SetConsoleScreenBufferSize(handle, coordinates);
+}
+
 void SetTitleAndBgColor(string title, string color){
 	system(color.c_str());
 	SetConsoleTitle(title.c_str());

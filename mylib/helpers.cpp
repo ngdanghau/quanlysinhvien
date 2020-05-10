@@ -1,7 +1,6 @@
 #include "helpers.h"
-#include "../constant.h"
-std::string convertToString(char* a, int size) 
-{ 
+#include "../constant.h" 
+std::string convertToString(char* a, int size) { 
     int i; 
     std::string s = ""; 
     for (i = 0; i < size; i++) { 
@@ -12,7 +11,7 @@ std::string convertToString(char* a, int size)
 
 std::string ConvertIntToString(int a){
 	std::string s = "", temp = ""; 
-    int n = 0, du;
+    int du;
 
 	while (a != 0)
 	{
@@ -37,8 +36,7 @@ void ClearMessage(std::string s){
 	printf("%-60s"," ");
 }
 
-void Message(std::string s, std::string s2, int type, int ms)
-{
+void Message(std::string s, std::string s2, int type, int ms){
 	HideTyping();
 	SetColor(RED);
 	if(type == 1)
@@ -61,10 +59,10 @@ void PrintKeyWord(string pattern, string keyword, int &x, int &y){
 	Typing();
 }
 
-int InputValue(int maxlength, string pattern, string &keyword, int &x, int &y, int type){
+int InputValue(int maxlength, string &keyword, int &x, int &y, int type){
 	int c;
 	int len = keyword.length();
-	
+	string pattern = "%-" + ConvertIntToString(maxlength) + "s";
 	GoToXY(x+len, y);
 	if(type == 4) HideTyping();
 	else Typing();
@@ -172,7 +170,25 @@ int InputValue(int maxlength, string pattern, string &keyword, int &x, int &y, i
 			if( c == 224 || c == 0){
 				c = 256 + getch();
 				return c;
-			}else if (  (c > 48 && c < 51 ) ){
+			}else if (  (c > 48 && c < 52 ) ){
+				if(len < maxlength){
+					keyword.push_back(char(c));
+					PrintKeyWord(pattern, keyword, x, y);
+				}
+			}else if(c == BACKSPACE){
+				--len;
+				keyword = keyword.substr(0, len--);
+				PrintKeyWord(pattern, keyword, x, y);
+			}else return c;
+		}
+	}else if(type == 7){
+		while(1){
+			len = keyword.length();
+			c = getch();
+			if( c == 224 || c == 0){
+				c = 256 + getch();
+				return c;
+			}else if (  (c > 47 && c < 58 ) || c == 45 ){
 				if(len < maxlength){
 					keyword.push_back(char(c));
 					PrintKeyWord(pattern, keyword, x, y);
@@ -193,9 +209,9 @@ void DrawTitle(char *title, int x){
 	cout << "-------------------------------------------";
 }
 
-void DrawTitleTable(int pointX, int pointY, int select, char ListText[10][MENU_TEXT_LENGTH], int number){
+void DrawTitleTable(int pointX, int pointY, int select, char ListText[10][MENU_TEXT_LENGTH]){
 	GoToXY(pointX-6, pointY+2);
-	for(int i = 1; i < number; i++){
+	for(int i = 1; i < 3; i++){
 		SetBGColor(WHITE);
 		SetColor(BLACK);
 		cout << "|";
@@ -209,7 +225,7 @@ void DrawTitleTable(int pointX, int pointY, int select, char ListText[10][MENU_T
 		}
 		
 		cout << ListText[i];
-		if(i == number-1) {
+		if(i == 2) {
 			SetColor(BLACK);
 			SetBGColor(WHITE);
 			cout << "|";
@@ -324,8 +340,8 @@ void ClearInput(int x, int y, int n){
 
 void ClearTable(int is_clear_title){
 	HideTyping();
-	int height = 38;
-	int pointY = 4;
+	int height = 37;
+	int pointY = 5;
 	if(is_clear_title){
 		height = 41;
 		pointY = 1;
@@ -336,27 +352,46 @@ void ClearTable(int is_clear_title){
 	}
 }
 
-void DrawHuongDanTable(int pointX, int pointY, char FunctionText[10][5][30], int n){
+void DrawTitleFunction(int pointX, int pointY, char FunctionText[10][5][30], int n, int is_skip){
+	GoToXY(pointX, pointY);
 	for(int i = 0; i < n; i++){
-		GoToXY(pointX+16*i + 5, pointY);
+		if(is_skip && i == 1) continue;
 		SetBGColor(14);
 		SetColor(RED);
 		cout << FunctionText[0][i];
 		SetColor(BLACK);
 		SetBGColor(WHITE);
 		cout << FunctionText[1][i];
+		if(i < n -1)
+			cout << char(HORIZONTAL_LINE) << char(HORIZONTAL_LINE) << char(HORIZONTAL_LINE);
 	}
 }
 
-void PrintSearchInput(string keyword){
-	GoToXY(47, 6);
+
+void DrawHuongDanTable(int pointX, int pointY, char FunctionText[10][5][30], int n){
+	GoToXY(pointX, pointY);
+	for(int i = 0; i < n; i++){
+		SetBGColor(14);
+		SetColor(RED);
+		cout << FunctionText[0][i];
+		SetColor(BLACK);
+		SetBGColor(WHITE);
+		cout << FunctionText[1][i];
+		cout << "   ";
+	}
+}
+
+void PrintSearchInput(int x, string keyword){
+	GoToXY(x, 6);
 	cout << "Tim kiem: " + keyword;
 	Typing();
 }
 
-int InputSearch(string &keyword, int &x, int &y){
+int InputSearch(string &keyword, int &x, int &y, int length){
+	Typing();
 	int c;
 	int len = keyword.length();
+	string pattern = "%-" + ConvertIntToString(length) + "s";
 	while(1){
 		len = keyword.length();
 		c = getch();
@@ -364,23 +399,23 @@ int InputSearch(string &keyword, int &x, int &y){
 			c = 256 + getch();
 			return c;
 		}else if ( (c > 96 && c < 123) || ( c > 31 && c < 90 )  ){
-			if(len < 50){
+			if(len < length){
 				if(c == 32 ){
 					if(len == 0 || keyword[len-1] == SPACE) break;
 				}
 				keyword.push_back(char(c));
-				PrintKeyWord("%-50s", keyword, x, y);
+				PrintKeyWord(pattern, keyword, x, y);
 			}
 		}else if(c == BACKSPACE){
 			--len;
 			keyword = keyword.substr(0, len--);
-			PrintKeyWord("%-50s", keyword, x, y);
+			PrintKeyWord(pattern, keyword, x, y);
 		}else return c;
 	}
 }
 
-void PrintPageTable(int currentPage, int totalPage){
-	GoToXY(140, 40);
+void PrintPageTable(int currentPage, int totalPage, int x){
+	GoToXY(x, 40);
 	SetBGColor(GREEN);
 	SetColor(WHITE);
 	printf("Trang %d/%d", currentPage, totalPage);
@@ -403,4 +438,52 @@ int GetYear(){
 	tm *ltm = localtime(&baygio);
 	return 1900 + ltm->tm_year;
 }
+
+
+void DrawArrowTable(int pointX, int pointY, int select, int currentPage, int stt){
+	HideTyping();
+	for(int i = 0; i < stt;i++){
+		GoToXY(pointX, pointY+=2);
+		if(i == select){
+			SetColor(LIGHT_PURPLE);
+			cout << ">>>>>";
+			SetColor(BLACK);
+		}else printf("%-6d", (i+1) + 15*currentPage);
+	}
+}
+
+
+int InArray(int a, int *array, int n){
+	for(int i = 0; i < n; i++){
+		if(a == array[i]) return i;
+	}
+	return -1;
+}
+
+
+void Remove_Element(int *array, int index, int &n){
+   int i;
+   for(i = index; i < n-1; i++) array[i] = array[i + 1];
+   n--;
+}
+
+int AddLopTC(int *array, int value, int &n){
+	int check = -1;
+	check = InArray(value, array, n);
+	if(check != -1){
+		Remove_Element(array, check , n);
+		return 0;
+	}
+	array[n] = value;
+	n++;
+	return 1;
+}
+
+
+
+
+
+
+
+
 

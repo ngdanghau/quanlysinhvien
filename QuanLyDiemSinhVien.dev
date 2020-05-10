@@ -101,9 +101,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=mylib\helpers.cpp
+FileName=struct\structs.cpp
 CompileCpp=1
-Folder=mylib
+Folder=struct
 Compile=1
 Link=1
 Priority=1000
@@ -181,9 +181,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=struct\structs.cpp
+FileName=mylib\helpers.h
 CompileCpp=1
-Folder=struct
+Folder=mylib
 Compile=1
 Link=1
 Priority=1000
@@ -201,7 +201,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=helpers.h
+FileName=mylib\helpers.cpp
 CompileCpp=1
 Folder=mylib
 Compile=1
